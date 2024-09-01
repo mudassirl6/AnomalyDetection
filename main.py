@@ -37,7 +37,7 @@ def main():
         st.write("The insights from the model is provided in the above chart...")
         st.write(data.describe(include='all'))
         st.write("Please tweak")
-        st.write(f"The anomaly score is{(anamoly_score)} and its size is {len(anamoly_score)}")
+        st.write(f"The anomaly score is{(anamoly_score)} and its size is {len(data_pred)}")
     
 
 # Function to train Isolation Forest
