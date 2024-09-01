@@ -18,6 +18,7 @@ def main():
     st.write("Data Preview:")
     st.write(data.head())
     data = cleandata(data)
+    data['Outlier'] = 0
         # Train Model
     st.subheader("Please select the model parameters as required")
     contamination = st.slider("Contamination (Anomaly Proportion)", 0.01, 0.5, 0.1)
@@ -29,7 +30,6 @@ def main():
 
         # Plotting
         st.subheader("Anomaly Detection Plot")
-        data['anomaly'] = model.predict(data)
         st.write("Pair Plots of some important features which contribute to more in detecting anomalies")
         plot_anomalies(data)
         st.pyplot(pca(data))
@@ -47,6 +47,7 @@ def train_isolation_forest(data, n_estimators=100, contamination=0.1):
     data['Outlier'] = data_pred
     outliers = data[data['Outlier'] == -1]
     normal_points = data[data['Outlier'] == 1]
+    data.drop('Outlier',inplace=True
     return model, data_pred,outliers
     
     return model, data_pred,model.decision_function(data)
