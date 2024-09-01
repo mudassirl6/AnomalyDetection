@@ -86,9 +86,9 @@ def pca(df_scaled):
     pca_transformed = pca.fit_transform(df_scaled)
     pca_df = pd.DataFrame(data=pca_transformed,columns = ['pca1','pca2'])
     plt.figure(figsize=(10, 6))
-    pca_df['outlier'] =df_scaled['Outlier']
-    pca_outlier = pca_df[pca_df['Outlier'] == -1]
-    pca_inlier = pca_df[pca_df['Outlier'] == 1]
+    pca_df['outlier'] = df_scaled['Outlier']
+    pca_outlier = pca_df[pca_df['outlier'] == -1]
+    pca_inlier = pca_df[pca_df['outlier'] == 1]
     plt.scatter(x = pca_inlier['pca1'], y = pca_inlier['pca2'], c='green', label='Normal Data')
     plt.scatter(x = pca_outlier['pca1'], y = pca_outlier['pca2'], c='red', label='Outlier Data')
 
