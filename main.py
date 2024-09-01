@@ -32,7 +32,6 @@ def main():
         data['anomaly'] = model.predict(data)
         st.write("Pair Plots of some important features which contribute to more in detecting anomalies")
         plot_anomalies(data)
-        st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot(pca(data))
         st.write("Anomalies are detected in the data. Green points are normal data points, while red points are anomalies.")
         st.write("The insights from the model is provided in the above chart...")
