@@ -45,6 +45,7 @@ def train_isolation_forest(data, n_estimators=100, contamination=0.1):
     model = IsolationForest(n_estimators=n_estimators, contamination=contamination)
     model.fit(data)
     data_pred = model.predict(data)
+    
     return model, data_pred,model.decision_function(data)
 # Plotting function
 def plot_anomalies(data):
