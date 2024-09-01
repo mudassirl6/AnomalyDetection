@@ -31,6 +31,7 @@ def main():
         # Plotting
         st.subheader("Anomaly Detection Plot")
         st.write("Pair Plots of some important features which contribute to more in detecting anomalies")
+        data['Outlier'] = model.fit_predict(data)
         plot_anomalies(data)
         st.pyplot(pca(data))
         st.write("Anomalies are detected in the data. Green points are normal data points, while red points are anomalies.")
@@ -53,7 +54,7 @@ def train_isolation_forest(data, n_estimators=100, contamination=0.1):
 # Plotting function
 def plot_anomalies(data):
     fig, ax = plt.subplots()
-    sns.scatterplot(x=data.iloc[:, 0], y=data.iloc[:, 1], hue='anomaly', data=data, ax=ax)
+    sns.scatterplot(x=data.iloc[:, 0], y=data.iloc[:, 1], hue='Outlier', data=data, ax=ax)
     st.pyplot(fig)
     fig1 = sns.pairplot(data,hue='anomaly',vars=['Age','AnnualIncome','PurchaseAmount'],palette={1:'green',-1:'red'})
     st.pyplot(fig1)
