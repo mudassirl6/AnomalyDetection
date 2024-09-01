@@ -51,7 +51,8 @@ def plot_anomalies(data):
     fig, ax = plt.subplots()
     sns.scatterplot(x=data.iloc[:, 0], y=data.iloc[:, 1], hue='anomaly', data=data, ax=ax)
     st.pyplot(fig)
-    st.pyplot(sns.pairplot(data,hue='anomaly',vars=['Age','AnnualIncome','PurchaseAmount'],palette={1:'green',-1:'red'}))
+    fig1 = sns.pairplot(data,hue='anomaly',vars=['Age','AnnualIncome','PurchaseAmount'],palette={1:'green',-1:'red'})
+    st.pyplot(fig1)
 
 
 def cleandata(df):
