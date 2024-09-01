@@ -50,7 +50,6 @@ def train_isolation_forest(data, n_estimators=100, contamination=0.1):
     normal_points = data[data['Outlier'] == 1]
     return model, data_pred,outliers
     
-    return model, data_pred,model.decision_function(data)
 # Plotting function
 def plot_anomalies(data):
     fig, ax = plt.subplots()
@@ -88,9 +87,9 @@ def pca(df_scaled):
     pca_transformed = pca.fit_transform(df_scaled)
     pca_df = pd.DataFrame(data=pca_transformed,columns = ['pca1','pca2'])
     plt.figure(figsize=(10, 6))
-    pca_df['outlier'] =df_scaled['anomaly']
-    pca_outlier = pca_df[pca_df['outlier'] == -1]
-    pca_inlier = pca_df[pca_df['outlier'] == 1]
+    pca_df['outlier'] =df_scaled['Outlier']
+    pca_outlier = pca_df[pca_df['Outlier'] == -1]
+    pca_inlier = pca_df[pca_df['Outlier'] == 1]
     plt.scatter(x = pca_inlier['pca1'], y = pca_inlier['pca2'], c='green', label='Normal Data')
     plt.scatter(x = pca_outlier['pca1'], y = pca_outlier['pca2'], c='red', label='Outlier Data')
 
