@@ -31,7 +31,6 @@ def main():
         # Plotting
         st.subheader("Anomaly Detection Plot")
         st.write("Pair Plots of some important features which contribute to more in detecting anomalies")
-        data['Outlier'] = model.fit_predict(data)
         plot_anomalies(data)
         st.pyplot(pca(data))
         st.write("Anomalies are detected in the data. Green points are normal data points, while red points are anomalies.")
