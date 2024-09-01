@@ -47,7 +47,6 @@ def train_isolation_forest(data, n_estimators=100, contamination=0.1):
     data['Outlier'] = data_pred
     outliers = data[data['Outlier'] == -1]
     normal_points = data[data['Outlier'] == 1]
-    data.drop('Outlier',inplace=True
     return model, data_pred,outliers
     
     return model, data_pred,model.decision_function(data)
