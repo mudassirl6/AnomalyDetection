@@ -23,7 +23,7 @@ def main():
     contamination = st.slider("Contamination (Anomaly Proportion)", 0.01, 0.5, 0.1)
     n_estimators = st.slider("Number of Trees", 50, 500, 100)
     if st.button("Train Model"):
-        model,data_pred,anamoly_score = train_isolation_forest(data, n_estimators=n_estimators, contamination=contamination)
+        model,data_pred,outliers = train_isolation_forest(data, n_estimators=n_estimators, contamination=contamination)
         st.write("Anomaly Detection Complete")
         st.write(data.head())
 
@@ -37,14 +37,17 @@ def main():
         st.write("The insights from the model is provided in the above chart...")
         st.write(data.describe(include='all'))
         st.write("Please tweak")
-        st.write(f"The anomaly score is{(anamoly_score)} and its size is {len(data_pred)}")
+        st.write(f"The size of outliers are {len(outliers)}")
     
 
 # Function to train Isolation Forest
 def train_isolation_forest(data, n_estimators=100, contamination=0.1):    
     model = IsolationForest(n_estimators=n_estimators, contamination=contamination)
-    model.fit(data)
-    data_pred = model.predict(data)
+    data_pred = model.fit_predict(data)
+    data['Outlier'] = data_pred
+    outliers = data[data['Outlier'] == -1]
+    normal_points = data[data['Outlier'] == 1]
+    return model, data_pred,outliers
     
     return model, data_pred,model.decision_function(data)
 # Plotting function
