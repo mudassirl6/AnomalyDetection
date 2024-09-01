@@ -105,4 +105,4 @@ def pca(df_scaled):
 if __name__ == "__main__":
     main()
 
-# Add any other interactive elements like feature selection, model parameters, etc.
+
